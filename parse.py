@@ -1,4 +1,4 @@
-def parse(file) :
+def parse_3atom(file) :
     bids = []
     atoms = []
     with open(file,'r') as f:
