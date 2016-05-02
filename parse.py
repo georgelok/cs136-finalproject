@@ -13,7 +13,6 @@ def parse(file) :
     return (num_goods, num_bids, num_dummy, bids, atoms)
 
 
-def filterAtoms(num_goods, max_size, atoms)
 
 
 print parse('100_100-0000.txt')
