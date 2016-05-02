@@ -3,10 +3,10 @@ def parse(file) :
     atoms = []
     with open(file,'r') as f:
         lines = f.readlines()
-        num_goods = (lines[20].split(' ')[1].strip())
-        num_bids = (lines[21].split(' ')[1].strip())
-        num_dummy = int(lines[22].split(' ')[1].strip())
-        for line in lines[24:] :
+        num_goods = (lines[11].split(' ')[1].strip())
+        num_bids = (lines[12].split(' ')[1].strip())
+        num_dummy = int(lines[13].split(' ')[1].strip())
+        for line in lines[15:] :
             fields = [field.strip() for field in line.split('\t')]
             bids.append(float(fields[1]))
             atoms.append([int(i) for i in fields[2:-1]])
@@ -15,4 +15,3 @@ def parse(file) :
 
 
 
-print parse('100_100-0000.txt')
