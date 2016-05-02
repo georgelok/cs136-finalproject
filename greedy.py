@@ -1,4 +1,4 @@
-# A skeleton of the greedy approximation algorithm of the WDP for CAs
+# An implementation of the greedy approximation algorithm of the WDP for CAs
 
 import math
 from parse import parse
@@ -48,20 +48,20 @@ def greedy(bids, atoms):
 #print greedy(b, a)
 
 test0 = parse('testfiles/3atom-100-1000-0000.txt')
-print "Revue Testfile 0: " + str(greedy(test0[3], test0[4]))
+print "Revenue Testfile 0: " + str(greedy(test0[3], test0[4]))
 
 
 test1 = parse('testfiles/3atom-100-1000-0001.txt')
-print "Revue Testfile 1: " + str(greedy(test1[3], test1[4]))
+print "Revenue Testfile 1: " + str(greedy(test1[3], test1[4]))
 
 test2 = parse('testfiles/3atom-100-1000-0002.txt')
-print "Revue Testfile 2: " + str(greedy(test2[3], test2[4]))
+print "Revenue Testfile 2: " + str(greedy(test2[3], test2[4]))
 
 test3 = parse('testfiles/3atom-100-1000-0003.txt')
-print "Revue Testfile 3: " + str(greedy(test3[3], test3[4]))
+print "Revenue Testfile 3: " + str(greedy(test3[3], test3[4]))
 
 test4 = parse('testfiles/3atom-100-1000-0004.txt')
-print "Revue Testfile 4: " + str(greedy(test4[3], test4[4]))
+print "Revenue Testfile 4: " + str(greedy(test4[3], test4[4]))
 
 
 
