@@ -26,20 +26,20 @@ def twoatom(bids, atoms):
 		# Each vertex corresponds to an atom
 		# Each edge between two vertices corresponds to a bid
 		# The weight corresponds to the bid value
-		first = unique_atoms.index(atoms[i][0])
-		second = unique_atoms.index(atoms[i][1])
+		first = atoms[i][0]
+		second = atoms[i][1]
 
 		if (first, second) in unique_bids:
 			if unique_bids[(first, second)] <  bids[i]:
 				unique_bids[(first, second)] = bids[i]
 		elif (second, first) in unique_bids:
-			if unique_bids[(second, first)] > bids[i]:
+			if unique_bids[(second, first)] < bids[i]:
 				unique_bids[(second, first)] = bids[i]
 		else:
 			unique_bids[(first, second)] = bids[i]
 
 	edges = [(i,j,v) for (i,j),v in unique_bids.iteritems()]
-	
+
 	# Run the blossom algorithm for maximum weight matching on our graph
 	mates = maxWeightMatching(edges)
 	

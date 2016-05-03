@@ -40,11 +40,11 @@ for bid in num_bids :
 			revenue = c.solution.get_objective_value()
 			ibm_results.append([good, bid, revenue, length])
 
-with open('resultfiles/arbitrary-greedy.csv', 'wb') as f :
+with open('resultfiles/arbitrary-greedy-nodomck.csv', 'wb') as f :
 	wr = csv.writer(f)
 	wr.writerows(greedy_results)
 
-with open('resultfiles/arbitrary-ibm.csv', 'wb') as f :
+with open('resultfiles/arbitrary-ibm-nodomck.csv', 'wb') as f :
 	wr = csv.writer(f)
 	wr.writerows(ibm_results)
 

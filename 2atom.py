@@ -33,13 +33,14 @@ def twoatom(bids, atoms):
 			if unique_bids[(first, second)] <  bids[i]:
 				unique_bids[(first, second)] = bids[i]
 		elif (second, first) in unique_bids:
-			if unique_bids[(second, first)] > bids[i]:
+			if unique_bids[(second, first)] < bids[i]:
 				unique_bids[(second, first)] = bids[i]
 		else:
 			unique_bids[(first, second)] = bids[i]
 
 	edges = [(i,j,v) for (i,j),v in unique_bids.iteritems()]
 	
+	print edges
 	# Run the blossom algorithm for maximum weight matching on our graph
 	mates = maxWeightMatching(edges)
 	
