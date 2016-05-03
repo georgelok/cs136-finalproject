@@ -1,5 +1,6 @@
-from parse import parse_arbitrary
+from parse import parse_2atom
 from greedy import greedy
+from twoatom import twoatom
 import cplex
 import time
 import csv
@@ -8,24 +9,35 @@ num_goods = ['100', '500', '1000']
 num_bids = ['100', '500', '1000', '2000', '4000']
 
 greedy_results = []
+twoatom_results = []
 ibm_results = []
 
 for bid in num_bids :
 	for good in num_goods :
-		print "testing aribtrary-"+good+"-"+bid
+		print "testing 2-atom-"+good+"-"+bid
 		for i in range(5) :
-			test = parse_arbitrary('testfiles/arbitrary/arbitrary-'+good+'-'+bid+'-000'+str(i)+'.txt')
+			test = parse_2atom('testfiles/2atom/2atom-'+good+'-'+bid+'-000'+str(i)+'.txt')
 			start = time.time()
 			revenue = greedy(test[3], test[4])
 			length = time.time() - start
 			greedy_results.append([good, bid, revenue, length])
 
 for bid in num_bids :
+	for good in num_goods :
+		print "testing 2-atom-"+good+"-"+bid
+		for i in range(5) :
+			test = parse_2atom('testfiles/2atom/2atom-'+good+'-'+bid+'-000'+str(i)+'.txt')
+			start = time.time()
+			revenue = twoatom(test[3], test[4])
+			length = time.time() - start
+			twoatom_results.append([good, bid, revenue, length])
+
+for bid in num_bids :
 	print "\n\n\n\n\nstarting IBM BID: " + str(bid) + "\n\n\n\n\n"
 	for good in num_goods :
-		print "testing arbitrary-"+good+"-"+bid
+		print "testing 2-atom-"+good+"-"+bid
 		for i in range(5) :
-			c = cplex.Cplex('testfiles/arbitrary/arbitrary-'+good+'-'+bid+'-000'+str(i)+'.lp')
+			c = cplex.Cplex('testfiles/2atom/2atom-'+good+'-'+bid+'-000'+str(i)+'.lp')
 			# Parameters
 			# Aggressive Probing
 			# 5% away from optimal
@@ -40,11 +52,15 @@ for bid in num_bids :
 			revenue = c.solution.get_objective_value()
 			ibm_results.append([good, bid, revenue, length])
 
-with open('resultfiles/arbitrary-greedy.csv', 'wb') as f :
+with open('resultfiles/2atom-greedy.csv', 'wb') as f :
 	wr = csv.writer(f)
 	wr.writerows(greedy_results)
 
-with open('resultfiles/arbitrary-ibm.csv', 'wb') as f :
+with open('resultfiles/2atom-twoatom.csv', 'wb') as f :
+	wr = csv.writer(f)
+	wr.writerows(twoatom_results)
+
+with open('resultfiles/2atom-ibm.csv', 'wb') as f :
 	wr = csv.writer(f)
 	wr.writerows(ibm_results)
 
